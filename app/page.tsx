@@ -7,9 +7,11 @@ import {
   AlertTitle,
   Button,
   ButtonGroup,
+  Center,
   HStack,
   IconButton,
   Spacer,
+  Spinner,
   VStack,
   useBoolean,
   useDisclosure,
@@ -17,7 +19,7 @@ import {
 import { Image } from "./Image";
 import { SettingsIcon } from "@chakra-ui/icons";
 import { SettingModal } from "./setting-modal";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Setting, loadSetting } from "./setting";
 import { Cube, cubes } from "./cubes";
 
@@ -33,25 +35,41 @@ const randomPick = (cubes: Cube[], currentCubeId?: string) => {
 };
 
 const Home = () => {
-  const [setting, setSetting] = useState<Setting>(loadSetting());
+  const [setting, setSetting] = useState<Setting | null>(null);
+  const [enabledCubes, setEnabledCubes] = useState<Cube[] | null>(null);
+  const [cube, setCube] = useState<Cube | null>(null);
   const settingDisclosure = useDisclosure();
-
-  const enabledCubes = useMemo(() => {
-    return [...setting.f2l, ...setting.oll, ...setting.pll]
-      .filter((cube) => cube.enabled)
-      .map((cube) => cubes.find((c) => c.id === cube.id)!);
-  }, [setting]);
-
-  const [cube, setCube] = useState<Cube | null>(randomPick(enabledCubes));
-  const [isShowAlgorithm, setIsShowAlgorithm] = useBoolean(false);
+  const [isShowAlgorithm, setIsShowAlgorithm] = useBoolean();
 
   useEffect(() => {
+    const setting = loadSetting();
+    setSetting(setting);
+  }, []);
+
+  useEffect(() => {
+    if (!setting) {
+      return;
+    }
+    const enabledCubes = [...setting.f2l, ...setting.oll, ...setting.pll]
+      .filter((cube) => cube.enabled)
+      .map((cube) => cubes.find((c) => c.id === cube.id)!);
+    setEnabledCubes(enabledCubes);
     setCube(randomPick(enabledCubes));
-  }, [enabledCubes]);
+  }, [setting, setEnabledCubes, setCube]);
 
   useEffect(() => {
     setIsShowAlgorithm.off();
   }, [cube, setIsShowAlgorithm]);
+
+  if (!enabledCubes) {
+    return (
+      <VStack padding="8">
+        <Center height="200px">
+          <Spinner color="blue.500" />
+        </Center>
+      </VStack>
+    );
+  }
 
   return (
     <VStack padding="8">

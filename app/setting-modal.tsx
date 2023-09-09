@@ -25,6 +25,7 @@ import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Setting, loadSetting, saveSetting } from "./setting";
 import { cubes, f2lCubes, ollCubes, pllCubes } from "./cubes";
+import { useEffect } from "react";
 
 const cubeSchema = z.object({ id: z.string(), enabled: z.boolean() });
 const formSchema = z.object({
@@ -41,13 +42,21 @@ export const SettingModal = ({
 }: Omit<ModalProps, "children"> & {
   onChange: (newSetting: Setting) => void;
 }) => {
-  const setting = loadSetting();
+  const { handleSubmit, control, watch, setValue } = useForm<FieldValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      f2l: f2lCubes.map((cube) => ({ id: cube.id, enabled: false })),
+      oll: ollCubes.map((cube) => ({ id: cube.id, enabled: false })),
+      pll: pllCubes.map((cube) => ({ id: cube.id, enabled: false })),
+    },
+  });
 
-  const { register, handleSubmit, control, watch, setValue } =
-    useForm<FieldValues>({
-      resolver: zodResolver(formSchema),
-      defaultValues: setting,
-    });
+  useEffect(() => {
+    const setting = loadSetting();
+    setValue("f2l", setting.f2l);
+    setValue("oll", setting.oll);
+    setValue("pll", setting.pll);
+  }, []);
 
   const f2l = watch("f2l");
   const f2lAllChecked = f2l.every((cube) => cube.enabled);
