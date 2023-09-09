@@ -95,14 +95,14 @@ export const SettingModal = ({
                   isIndeterminate={f2lIsIndeterminated}
                   onChange={(e) => {
                     const checked = e.target.checked;
-                    f2lCubes.forEach((cube, index) => {
+                    f2lCubes.forEach((_, index) => {
                       setValue(`f2l.${index}.enabled`, checked);
                     });
                   }}
                 >
                   <Heading fontSize="lg">F2L</Heading>
                 </Checkbox>
-                <SimpleGrid columns={4} spacing="1">
+                <SimpleGrid minChildWidth="60" spacing="1">
                   {f2lCubes.map((cube, index) => (
                     <Box key={cube.id} position="relative">
                       <AspectRatio ratio={547 / 142}>
@@ -137,14 +137,14 @@ export const SettingModal = ({
                   isIndeterminate={ollIsIndeterminated}
                   onChange={(e) => {
                     const checked = e.target.checked;
-                    ollCubes.forEach((cube, index) => {
+                    ollCubes.forEach((_, index) => {
                       setValue(`oll.${index}.enabled`, checked);
                     });
                   }}
                 >
                   <Heading fontSize="lg">OLL</Heading>
                 </Checkbox>
-                <SimpleGrid columns={4} spacing="1">
+                <SimpleGrid minChildWidth="60" spacing="1">
                   {ollCubes.map((cube, index) => (
                     <Box key={cube.id} position="relative">
                       <AspectRatio ratio={547 / 142}>
@@ -179,14 +179,14 @@ export const SettingModal = ({
                   isIndeterminate={pllIsIndeterminated}
                   onChange={(e) => {
                     const checked = e.target.checked;
-                    pllCubes.forEach((cube, index) => {
+                    pllCubes.forEach((_, index) => {
                       setValue(`pll.${index}.enabled`, checked);
                     });
                   }}
                 >
                   <Heading fontSize="lg">PLL</Heading>
                 </Checkbox>
-                <SimpleGrid columns={4} spacing="1">
+                <SimpleGrid minChildWidth="60" spacing="1">
                   {pllCubes.map((cube, index) => (
                     <Box key={cube.id} position="relative">
                       <AspectRatio ratio={547 / 142}>
