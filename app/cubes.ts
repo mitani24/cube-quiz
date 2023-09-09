@@ -3,7 +3,7 @@ export type Cube = {
   type: "F2L" | "OLL" | "PLL";
   imagePath: {
     cube: string;
-    cubeWithMove: string;
+    cubeWithAlgorithm: string;
   };
 };
 
@@ -15,7 +15,7 @@ export const f2lCubes: Cube[] = Array.from({ length: 41 }, (_, i) => {
     type: "F2L",
     imagePath: {
       cube: `/cubes/${id}.png`,
-      cubeWithMove: `/cubes-with-move/${id}.png`,
+      cubeWithAlgorithm: `/cubes-with-algorithm/${id}.png`,
     },
   };
 });
@@ -28,7 +28,7 @@ export const ollCubes: Cube[] = Array.from({ length: 57 }, (_, i) => {
     type: "OLL",
     imagePath: {
       cube: `/cubes/${id}.png`,
-      cubeWithMove: `/cubes-with-move/${id}.png`,
+      cubeWithAlgorithm: `/cubes-with-algorithm/${id}.png`,
     },
   };
 });
@@ -41,7 +41,7 @@ export const pllCubes: Cube[] = Array.from({ length: 21 }, (_, i) => {
     type: "PLL",
     imagePath: {
       cube: `/cubes/${id}.png`,
-      cubeWithMove: `/cubes-with-move/${id}.png`,
+      cubeWithAlgorithm: `/cubes-with-algorithm/${id}.png`,
     },
   };
 });

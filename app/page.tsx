@@ -43,15 +43,15 @@ const Home = () => {
   }, [setting]);
 
   const [cube, setCube] = useState<Cube | null>(randomPick(enabledCubes));
-  const [isShowMovements, setIsShowMovements] = useBoolean(false);
+  const [isShowAlgorithm, setIsShowAlgorithm] = useBoolean(false);
 
   useEffect(() => {
     setCube(randomPick(enabledCubes));
   }, [enabledCubes]);
 
   useEffect(() => {
-    setIsShowMovements.off();
-  }, [cube, setIsShowMovements]);
+    setIsShowAlgorithm.off();
+  }, [cube, setIsShowAlgorithm]);
 
   return (
     <VStack padding="8">
@@ -92,16 +92,16 @@ const Home = () => {
             <Button
               colorScheme="blue"
               variant="outline"
-              isDisabled={isShowMovements}
-              onClick={setIsShowMovements.on}
+              isDisabled={isShowAlgorithm}
+              onClick={setIsShowAlgorithm.on}
             >
-              Show Movements
+              Forgot the algorithm?
             </Button>
           </ButtonGroup>
-          {isShowMovements && (
+          {isShowAlgorithm && (
             <Image
-              src={cube.imagePath.cubeWithMove}
-              alt="Cube with movements"
+              src={cube.imagePath.cubeWithAlgorithm}
+              alt="Cube with algorithm"
               width="547"
               height="142"
             />

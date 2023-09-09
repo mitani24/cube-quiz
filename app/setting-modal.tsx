@@ -23,7 +23,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import { loadSetting, saveSetting } from "./setting";
+import { Setting, loadSetting, saveSetting } from "./setting";
 import { cubes, f2lCubes, ollCubes, pllCubes } from "./cubes";
 
 const cubeSchema = z.object({ id: z.string(), enabled: z.boolean() });
@@ -98,7 +98,7 @@ export const SettingModal = ({
                     <Box key={cube.id} position="relative">
                       <AspectRatio ratio={547 / 142}>
                         <Image
-                          src={cube.imagePath.cubeWithMove}
+                          src={cube.imagePath.cubeWithAlgorithm}
                           alt={cube.id}
                         />
                       </AspectRatio>
@@ -140,7 +140,7 @@ export const SettingModal = ({
                     <Box key={cube.id} position="relative">
                       <AspectRatio ratio={547 / 142}>
                         <Image
-                          src={cube.imagePath.cubeWithMove}
+                          src={cube.imagePath.cubeWithAlgorithm}
                           alt={cube.id}
                         />
                       </AspectRatio>
@@ -182,7 +182,7 @@ export const SettingModal = ({
                     <Box key={cube.id} position="relative">
                       <AspectRatio ratio={547 / 142}>
                         <Image
-                          src={cube.imagePath.cubeWithMove}
+                          src={cube.imagePath.cubeWithAlgorithm}
                           alt={cube.id}
                         />
                       </AspectRatio>

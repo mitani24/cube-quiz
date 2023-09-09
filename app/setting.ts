@@ -1,4 +1,4 @@
-import { Cube, cubes, f2lCubes, ollCubes, pllCubes } from "./cubes";
+import { f2lCubes, ollCubes, pllCubes } from "./cubes";
 
 export type CubeSetting = {
   id: string;
