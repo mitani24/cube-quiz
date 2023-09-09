@@ -9,19 +9,29 @@ import {
   ButtonGroup,
   Center,
   HStack,
+  Heading,
   IconButton,
+  Kbd,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
   Spacer,
   Spinner,
+  Stack,
+  Text,
   VStack,
   useBoolean,
   useDisclosure,
 } from "@chakra-ui/react";
 import { Image } from "./Image";
-import { SettingsIcon } from "@chakra-ui/icons";
+import { QuestionOutlineIcon, SettingsIcon } from "@chakra-ui/icons";
 import { SettingModal } from "./setting-modal";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Setting, loadSetting } from "./setting";
 import { Cube, cubes } from "./cubes";
+import { useKeyboard } from "./use-keyboard";
 
 const randomPick = (cubes: Cube[], currentCubeId?: string) => {
   const cubeCandidates = cubes.filter((cube) => cube.id !== currentCubeId);
@@ -41,6 +51,29 @@ const Home = () => {
   const settingDisclosure = useDisclosure();
   const [isShowAlgorithm, setIsShowAlgorithm] = useBoolean();
 
+  const updateCube = useCallback(
+    (enabledCubes: Cube[] | null, currentCube: Cube | null) => {
+      if (enabledCubes) {
+        setCube(randomPick(enabledCubes, currentCube?.id));
+      }
+    },
+    [setCube]
+  );
+
+  useKeyboard({
+    onKeyDown: (e) => {
+      if (e.key === "r") {
+        updateCube(enabledCubes, cube);
+      }
+      if (e.key === "a") {
+        setIsShowAlgorithm.on();
+      }
+      if (e.key === "s") {
+        settingDisclosure.onOpen();
+      }
+    },
+  });
+
   useEffect(() => {
     const setting = loadSetting();
     setSetting(setting);
@@ -54,8 +87,8 @@ const Home = () => {
       .filter((cube) => cube.enabled)
       .map((cube) => cubes.find((c) => c.id === cube.id)!);
     setEnabledCubes(enabledCubes);
-    setCube(randomPick(enabledCubes));
-  }, [setting, setEnabledCubes, setCube]);
+    updateCube(enabledCubes, cube);
+  }, [setting, setEnabledCubes, updateCube]);
 
   useEffect(() => {
     setIsShowAlgorithm.off();
@@ -75,6 +108,33 @@ const Home = () => {
     <VStack padding="8">
       <HStack width="full">
         <Spacer />
+        <Popover>
+          <PopoverTrigger>
+            <IconButton
+              aria-label="Hint"
+              icon={<QuestionOutlineIcon />}
+              variant="ghost"
+            />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverBody padding="6">
+              <Stack>
+                <Heading fontSize="lg">Keyboard shortcuts</Heading>
+                {[
+                  { key: "R", description: "Pick at random" },
+                  { key: "A", description: "Show the algorithm" },
+                  { key: "S", description: "Open the setting" },
+                ].map((shortcut) => (
+                  <HStack key={shortcut.key}>
+                    <Kbd>{shortcut.key}</Kbd>
+                    <Text>{shortcut.description}</Text>
+                  </HStack>
+                ))}
+              </Stack>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
         <IconButton
           aria-label="Setting"
           icon={<SettingsIcon />}
@@ -101,11 +161,9 @@ const Home = () => {
             <Button
               colorScheme="blue"
               isDisabled={enabledCubes.length < 2}
-              onClick={() => {
-                setCube(randomPick(enabledCubes, cube.id));
-              }}
+              onClick={() => updateCube(enabledCubes, cube)}
             >
-              Random Pick
+              Pick at random
             </Button>
             <Button
               colorScheme="blue"
