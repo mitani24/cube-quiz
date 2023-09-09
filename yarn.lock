@@ -255,6 +255,20 @@
   dependencies:
     "@chakra-ui/shared-utils" "2.0.5"
 
+"@chakra-ui/icon@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icon/-/icon-3.2.0.tgz#92b9454aa0d561b4994bcd6a1b3bb1fdd5c67bef"
+  integrity sha512-xxjGLvlX2Ys4H0iHrI16t74rG9EBcpFvJ3Y3B7KMQTrnW34Kf7Da/UC8J67Gtx85mTHW020ml85SVPKORWNNKQ==
+  dependencies:
+    "@chakra-ui/shared-utils" "2.0.5"
+
+"@chakra-ui/icons@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.1.1.tgz#58ff0f9e703f2f4f89debd600ce4e438f43f9c9a"
+  integrity sha512-3p30hdo4LlRZTT5CwoAJq3G9fHI0wDc0pBaMHj4SUn0yomO+RcDRlzhdXqdr5cVnzax44sqXJVnf3oQG0eI+4g==
+  dependencies:
+    "@chakra-ui/icon" "3.2.0"
+
 "@chakra-ui/image@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@chakra-ui/image/-/image-2.1.0.tgz#6c205f1ca148e3bf58345b0b5d4eb3d959eb9f87"
@@ -1020,6 +1034,11 @@
   version "8.48.0"
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.48.0.tgz#642633964e217905436033a2bd08bf322849b7fb"
   integrity sha512-ZSjtmelB7IJfWD2Fvb7+Z+ChTIKWq6kjda95fLcQKNS5aheVHn4IkfgRQE3sIIzTcSLwLcLZUD9UBt+V7+h+Pw==
+
+"@hookform/resolvers@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.3.1.tgz#b7cbfe767434f52cba6b99b0a9a0b73eb8895188"
+  integrity sha512-K7KCKRKjymxIB90nHDQ7b9nli474ru99ZbqxiqDAWYsYhOsU3/4qLxW91y+1n04ic13ajjZ66L3aXbNef8PELQ==
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.11"
@@ -2898,6 +2917,11 @@ react-focus-lock@^2.9.4:
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
+react-hook-form@^7.46.1:
+  version "7.46.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.46.1.tgz#39347dbff19d980cb41087ac32a57abdc6045bb3"
+  integrity sha512-0GfI31LRTBd5tqbXMGXT1Rdsv3rnvy0FjEk8Gn9/4tp6+s77T7DPZuGEpBRXOauL+NhyGT5iaXzdIM2R6F/E+w==
+
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -3413,3 +3437,8 @@ zod@3.21.4:
   version "3.21.4"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.21.4.tgz#10882231d992519f0a10b5dd58a38c9dabbb64db"
   integrity sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==
+
+zod@^3.22.2:
+  version "3.22.2"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.2.tgz#3add8c682b7077c05ac6f979fea6998b573e157b"
+  integrity sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==
